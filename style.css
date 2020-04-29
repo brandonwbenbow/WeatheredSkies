@@ -4,11 +4,19 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   height: 100vh;
   display: flex;
   flex-direction: column;
   background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
+  background-image: url("");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   font-family: 'Quicksand', sans-serif;
   color: white;
   transition: 2s;
@@ -32,11 +40,15 @@ body {
 .tempLeft {
   display: flex;
   float: left;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
 }
 
 .tempRight {
   display: flex;
   float: right;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
 }
 
 .temperature-degree {
@@ -54,22 +66,42 @@ body {
 
 .degree-section span {
   margin: 0px 2px;
-  font-size: 40px;
+  font-size: 4vw;
 }
 
 .degree-section h2 {
-  font-size: 60px;
+  font-size: 6vw;
 }
 
 .description-section {
   display: block;
   width: 100%;
+  font-size: 2.5vw;
 }
 
 .temperature-description {
   float: left;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
 }
 
 .feels-like-description {
   float: right;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
+}
+
+.location-section {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding: 20px;
+}
+
+.location-section h2 {
+  font-size: 7vw;
+  float: left;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
 }

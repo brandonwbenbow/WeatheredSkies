@@ -12,8 +12,8 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
   background-image: url("");
+  background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -42,6 +42,7 @@ body {
   float: left;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
+  padding: 5px;
 }
 
 .tempRight {
@@ -49,6 +50,7 @@ body {
   float: right;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
+  padding: 5px;
 }
 
 .temperature-degree {
@@ -83,12 +85,14 @@ body {
   float: left;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
+  padding: 5px;
 }
 
 .feels-like-description {
   float: right;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
+  padding: 5px;
 }
 
 .location-section {
@@ -97,11 +101,56 @@ body {
   bottom: 0px;
   left: 0px;
   padding: 20px;
+  max-width: 48%
 }
 
 .location-section h2 {
   font-size: 7vw;
   float: left;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.credit-section {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  padding: 20px;
+  max-width: 48%;
+}
+
+.author-credit {
+  float: right;
+  display: block;
+}
+
+.author-credit a {
+  color: white;
+}
+
+.author-credit a h2 {
+  color: white;
+  font-size: 3vw;
+  padding: 5px;
+  background: rgba(130, 130, 130, 0.2);
+  border-radius: 3px;
+}
+
+.pexels-credit {
+  float: right;
+  display: block;
+}
+
+.pexels-credit a {
+  color: white;
+}
+
+.pexels-credit a h3 {
+  color: white;
+  font-size: 2vw;
+  padding: 5px;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
 }

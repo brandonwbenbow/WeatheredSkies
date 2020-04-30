@@ -5,6 +5,8 @@ window.addEventListener('load', ()=> {
   let temperatureDegree = document.querySelector('.temperature-degree');
   let feelsLikeDegree = document.querySelector('.temperature-degree-feel');
   let cityName = document.querySelector('.city');
+  let photographerName = document.querySelector('.photographerName');
+  let photoLink = document.querySelector('.photographerName')
 
   let tempDiv = document.querySelector('.temperature');
 
@@ -12,26 +14,53 @@ window.addEventListener('load', ()=> {
     navigator.geolocation.getCurrentPosition(position => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
+      let startDate = new Date("4/28/2020");
+      let today = new Date();
+      const oneDay = 24 * 60 * 60 * 1000;
+      let dayNum = Math.round(Math.abs((today - startDate) / oneDay));
+
+      if(localStorage.getItem("dayNumLocal") == null) {
+        localStorage.setItem("dayNumLocal", dayNum);
+      } else {
+        if(localStorage.getItem("dayNumLocal") != dayNum) {
+          localStorage.setItem("dayNumLocal", dayNum);
+        }
+      }
 
       const proxy = "https://cors-anywhere.herokuapp.com/"
       const api = `${proxy}https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
-      const pexelAuth = `${proxy}https://api.pexels.com/v1/curated?per_page=1&page=1`
+      const pexelAuth = `${proxy}https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
 
+      var testReload = (localStorage.getItem("bgPhoto") == null || localStorage.getItem("bgPhotoCredit") == null || localStorage.getItem("bgPhotoLink") == null);
 
-      fetch(pexelAuth, {
-        headers: {
-          'Authorization': '563492ad6f9170000100000103878760a95c43b69b650c65a5c80d7b'
-        }
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        console.log(data.photos[0].src.landscape);
+      if(testReload || localStorage.getItem("dayNumLocal") != dayNum) {
+        fetch(pexelAuth, {
+          headers: {
+            'Authorization': '563492ad6f9170000100000103878760a95c43b69b650c65a5c80d7b'
+          }
+        })
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          console.log("Pexel API Request");
 
-        document.body.style.backgroundImage = "url(" + data.photos[0].src.landscape + ")";
-      })
+          photographerName.textContent = "Credit to " + data.photos[0].photographer;
+          photoLink.href = data.photos[0].photographer_url;
+
+          document.body.style.backgroundImage = "url(" + data.photos[0].src.original + ")";
+
+          localStorage.setItem("bgPhoto", data.photos[0].src.original);
+          localStorage.setItem("bgPhotoCredit", data.photos[0].photographer);
+          localStorage.setItem("bgPhotoLink", data.photos[0].photographer_url);
+        })
+      } else {
+        photographerName.textContent = "Credit to " + localStorage.getItem("bgPhotoCredit");
+        photoLink.href = localStorage.getItem("bgPhotoLink");
+
+        document.body.style.backgroundImage = "url(" + localStorage.getItem("bgPhoto") + ")";
+      }
 
       fetch(api)
         .then(response => {
@@ -39,6 +68,7 @@ window.addEventListener('load', ()=> {
         })
         .then(data => {
           console.log(data);
+          console.log("OpenWeatherMap API Request");
 
           // Set DOMs
           temperatureDegree.textContent = data.main.temp;

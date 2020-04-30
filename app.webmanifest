@@ -1,0 +1,15 @@
+{
+  "background_color": "#6dd2ee",
+  "description": "Weather app powered by OpenWeatherMap, pictures provided by Pexels.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "weatheredSkiesv2.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "name": "Weatherd Skies",
+  "short_name": "WS",
+  "start_url": "/index.html"
+}

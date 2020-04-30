@@ -136,6 +136,7 @@ body {
   padding: 5px;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
+  text-align: right;
 }
 
 .pexels-credit {
@@ -153,4 +154,5 @@ body {
   padding: 5px;
   background: rgba(130, 130, 130, 0.2);
   border-radius: 3px;
+  text-align: right;
 }

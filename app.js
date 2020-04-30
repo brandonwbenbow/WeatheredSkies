@@ -6,7 +6,7 @@ window.addEventListener('load', ()=> {
   let feelsLikeDegree = document.querySelector('.temperature-degree-feel');
   let cityName = document.querySelector('.city');
   let photographerName = document.querySelector('.photographerName');
-  let photoLink = document.querySelector('.photographerName')
+  let photoLink = document.querySelector('.photoLink')
 
   let tempDiv = document.querySelector('.temperature');
 
@@ -56,6 +56,8 @@ window.addEventListener('load', ()=> {
           localStorage.setItem("bgPhotoLink", data.photos[0].photographer_url);
         })
       } else {
+        console.log(localStorage.getItem("bgPhotoLink"));
+
         photographerName.textContent = "Credit to " + localStorage.getItem("bgPhotoCredit");
         photoLink.href = localStorage.getItem("bgPhotoLink");
 

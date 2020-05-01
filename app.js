@@ -19,14 +19,6 @@ window.addEventListener('load', ()=> {
       const oneDay = 24 * 60 * 60 * 1000;
       let dayNum = Math.round(Math.abs((today - startDate) / oneDay));
 
-      if(localStorage.getItem("dayNumLocal") == null) {
-        localStorage.setItem("dayNumLocal", dayNum);
-      } else {
-        if(localStorage.getItem("dayNumLocal") != dayNum) {
-          localStorage.setItem("dayNumLocal", dayNum);
-        }
-      }
-
       const proxy = "https://cors-anywhere.herokuapp.com/"
       const api = `${proxy}https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
       const pexelAuth = `${proxy}https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
@@ -34,6 +26,11 @@ window.addEventListener('load', ()=> {
       var testReload = (localStorage.getItem("bgPhoto") == null || localStorage.getItem("bgPhotoCredit") == null || localStorage.getItem("bgPhotoLink") == null);
 
       if(testReload || localStorage.getItem("dayNumLocal") != dayNum) {
+
+        if(localStorage.getItem("dayNumLocal") == null || localStorage.getItem("dayNumLocal") != dayNum) {
+          localStorage.setItem("dayNumLocal", dayNum);
+        }
+
         fetch(pexelAuth, {
           headers: {
             'Authorization': '563492ad6f9170000100000103878760a95c43b69b650c65a5c80d7b'

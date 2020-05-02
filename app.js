@@ -20,8 +20,8 @@ window.addEventListener('load', ()=> {
       let dayNum = Math.round(Math.abs((today - startDate) / oneDay));
 
       const proxy = "https://cors-anywhere.herokuapp.com/"
-      const api = `${proxy}https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
-      const pexelAuth = `${proxy}https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
+      const pexelAuth = `https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
 
       var testReload = (localStorage.getItem("bgPhoto") == null || localStorage.getItem("bgPhotoCredit") == null || localStorage.getItem("bgPhotoLink") == null);
 
@@ -60,6 +60,8 @@ window.addEventListener('load', ()=> {
 
         document.body.style.backgroundImage = "url(" + localStorage.getItem("bgPhoto") + ")";
       }
+
+      console.log(dayNum + " - " + localStorage.getItem("dayNumLocal"));
 
       fetch(api)
         .then(response => {

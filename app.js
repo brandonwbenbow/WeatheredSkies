@@ -22,7 +22,7 @@ window.addEventListener('load', ()=> {
       const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
       const pexelAuth = `https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
 
-      var testReload = (localStorage.getItem("bgPhoto") == null || localStorage.getItem("bgPhotoCredit") == null || localStorage.getItem("bgPhotoLink") == null);
+      var testReload = (localStorage.getItem("bgPhoto") == null || localStorage.getItem("bgPhotoCredit") == null || localStorage.getItem("bgPhotoLink") == null || localStorage.getItem("bgPhotoNumber") == null);
 
       if(testReload || localStorage.getItem("dayNumLocal") != dayNum) {
 
@@ -50,6 +50,7 @@ window.addEventListener('load', ()=> {
           localStorage.setItem("bgPhoto", data.photos[0].src.original);
           localStorage.setItem("bgPhotoCredit", data.photos[0].photographer);
           localStorage.setItem("bgPhotoLink", data.photos[0].photographer_url);
+          localStorage.setItem("bgPhotoNumber", data.photos[0].photographer_id);
         })
       } else {
         console.log(localStorage.getItem("bgPhotoLink"));

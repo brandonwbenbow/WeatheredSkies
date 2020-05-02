@@ -19,7 +19,6 @@ window.addEventListener('load', ()=> {
       const oneDay = 24 * 60 * 60 * 1000;
       let dayNum = Math.round(Math.abs((today - startDate) / oneDay));
 
-      const proxy = "https://cors-anywhere.herokuapp.com/"
       const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
       const pexelAuth = `https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
 

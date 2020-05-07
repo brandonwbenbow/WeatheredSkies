@@ -4,7 +4,7 @@
   "display": "fullscreen",
   "icons": [
     {
-      "src": "weatheredSkiesv2.png",
+      "src": "WeatherSkiesWhite.png",
       "sizes": "1024x1024",
       "type": "image/png"
     }

@@ -1,7 +1,7 @@
 {
   "background_color": "#6dd2ee",
   "description": "Weather app powered by OpenWeatherMap, pictures provided by Pexels.",
-  "display": "standalone",
+  "display": "fullscreen",
   "icons": [
     {
       "src": "WeatherSkiesWhite.png",

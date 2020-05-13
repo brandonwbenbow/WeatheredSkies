@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #6dd2ee;
 }
 
 ::-webkit-scrollbar {
@@ -13,7 +14,6 @@ body {
   display: flex;
   flex-direction: column;
   background-image: url("");
-  background-color: #6dd2ee;
   background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
   background-size: cover;
   background-repeat: no-repeat;

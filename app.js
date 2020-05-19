@@ -1,6 +1,8 @@
 window.addEventListener('load', ()=> {
+  // Grab info from apis
   let long;
   let lat;
+  let tempDiv = document.querySelector('.temperature');
   let temperatureDescription = document.querySelector('.temperature-description');
   let temperatureDegree = document.querySelector('.temperature-degree');
   let feelsLikeDegree = document.querySelector('.temperature-degree-feel');
@@ -8,8 +10,7 @@ window.addEventListener('load', ()=> {
   let photographerName = document.querySelector('.photographerName');
   let photoLink = document.querySelector('.photoLink')
 
-  let tempDiv = document.querySelector('.temperature');
-
+  // Grabs position and determines day from launch for photo
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(position => {
       long = position.coords.longitude;
@@ -22,8 +23,10 @@ window.addEventListener('load', ()=> {
       const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=22cb4215a18ff315d2f8fd62a12e6b3c`
       const pexelAuth = `https://api.pexels.com/v1/curated?per_page=1&page=${dayNum}`
 
+      // Checks local browser storage to cut down on limited api calls
       var testReload = (localStorage.getItem("bgPhoto") == null || localStorage.getItem("bgPhotoCredit") == null || localStorage.getItem("bgPhotoLink") == null || localStorage.getItem("bgPhotoNumber") == null);
 
+      // If no photo or different day since last photo, gets new photo
       if(testReload || localStorage.getItem("dayNumLocal") != dayNum) {
 
         if(localStorage.getItem("dayNumLocal") == null || localStorage.getItem("dayNumLocal") != dayNum) {
@@ -39,14 +42,16 @@ window.addEventListener('load', ()=> {
           return response.json();
         })
         .then(data => {
-          console.log(data);
+          console.log(data); // Check inspector for logs
           console.log("Pexel API Request");
 
+          // Show data
           photographerName.textContent = "Credit to " + data.photos[0].photographer;
           photoLink.href = data.photos[0].photographer_url;
 
           document.body.style.backgroundImage = "url(" + data.photos[0].src.original + ")";
 
+          // Save photo data for photo test
           localStorage.setItem("bgPhoto", data.photos[0].src.original);
           localStorage.setItem("bgPhotoCredit", data.photos[0].photographer);
           localStorage.setItem("bgPhotoLink", data.photos[0].photographer_url);
@@ -68,7 +73,7 @@ window.addEventListener('load', ()=> {
           return response.json();
         })
         .then(data => {
-          console.log(data);
+          console.log(data); // Check inspector for logs
           console.log("OpenWeatherMap API Request");
 
           // Set DOMs
@@ -95,6 +100,4 @@ window.addEventListener('load', ()=> {
   }else{
     h1.textContent="Please Enable Geolocation";
   }
-
-
 });
